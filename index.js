@@ -219,3 +219,54 @@ function findMissingNum(arr) {
 
 findMissingNum([1,2,3,4,5,6,7,9,10])
 
+
+
+
+
+
+//ASYNC calls
+const url = "https://api.github.com/users/petromoldovan";
+
+//normal function
+function testFetch() {
+    fetch(url)
+        .then(res=>console.log("res1", res))
+}
+
+//awesome async func
+async function testAsync() {
+    const res = await fetch(url);
+
+    //print user but not return
+    console.log(res)
+
+    //async functions return a promise
+    return res;
+}
+
+//use async function
+testAsync().then(res=>console.log("dosmth"))
+
+
+//--------example with own promise
+//simple promise
+function simplePromise(urlToFetch){
+    return new Promise((resolve, reject)=> {
+        fetch(urlToFetch)
+            .then((response) => {
+                resolve("success")
+            })
+            .catch((e) => reject("this is error"))
+    })
+}
+
+async function testAsync() {
+    const res = await simplePromise(url);
+
+    //print user but not return
+    console.log(res)
+
+    //async functions return a promise
+    return res;
+}
+//----------------------------------
