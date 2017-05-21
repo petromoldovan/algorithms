@@ -283,3 +283,127 @@ async function testAsync() {
     return res;
 }
 //----------------------------------
+
+
+
+//Linked List
+//single-----------------------------------------
+function singleLinkedList() {
+    this.head = null;
+}
+
+singleLinkedList.prototype.push = function(val) {
+    let node = {
+        value: val,
+        next: null
+    }
+
+    if (!this.head) {
+        this.head = node;
+    }
+    else {
+        //searching for the last elem
+        let current = this.head;
+        while (current.next) {
+            current = current.next
+        }
+        //---------------------------
+
+        //elem whose next property is null is the tail of inked list
+        current.next = node;
+    }
+
+}
+
+let sll = new singleLinkedList();
+
+sll.push(1);
+sll.push(2);
+sll.push(3);
+sll.push(4);
+
+
+
+
+//findle middle
+//the thing is that you make two pinters: one moves one object at a time and the second moves two objects at a time
+//When the second(fast) pointer hits the tail of a list, it means that the slower pointer in hist halfway, therefore in the middle
+function getMiddleNodeValue(sll) {
+    let fastPointer = sll.head;
+    let slowPointer = sll.head;
+
+    while(fastPointer && fastPointer.next !== null) {
+        fastPointer = fastPointer.next.next;
+        slowPointer = slowPointer.next;
+    }
+
+    return slowPointer.value
+}
+
+
+//get depth of a linked list
+//move through nodes till you reach tail. You know it by hitting node where next is null
+function getLengthOfLinkedList(sll) {
+    let depth = 1;
+    let node = sll.head;
+
+    while(node && node.next) {
+        node = node.next;
+        depth++
+    }
+
+    return depth;
+}
+
+
+//detect a loop
+//check if linked list in not broken in the way that one of the node references the previos node and loop occures when you do node.next.next
+detectSingleDistanceLoop(sll) {
+    let fast = sll.head;
+    let slow = sll.head;
+
+    while(slow && fast && fast.next) {
+        fast = fast.next.next;
+        slow = slow.next;
+
+        if (slow == fast) {
+            return true
+        }
+    }
+    
+    return false
+}
+
+
+
+//END: single-----------------------------------------
+
+
+//Doubly LinkedList-------------------------------------------
+function doublyLinkedList() {
+    this.head = null;
+}
+
+doublyLinkedList.prototype.push = function(val) {
+  let head = this.head,
+      current = head,
+      previous = head;
+
+  if (!this.head) {
+      this.head = {value: val, next: null, previous: null}
+  }
+  else {
+      while (current && current.next) {
+        previous = current;
+        current = current.next;
+      }
+      current.next = {value: val, next: null, previous: current}
+  }
+}
+
+let dll = new doublyLinkedList();
+
+dll.push(1)
+dll.push(2)
+dll.push(3)
+dll.push(4)
