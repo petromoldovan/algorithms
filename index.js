@@ -77,3 +77,145 @@ function removeDups(arr) {
 }
 
 removeDups(array)
+
+
+//find all prime factors of a number
+function findPrime(n){
+    let res = []
+    let divisor = 2;
+
+    debugger
+
+    while(n>2) {
+        if(n % divisor === 0) {
+            res.push(divisor)
+            n = n/divisor
+
+        } else {
+            divisor++
+        }
+
+    }
+
+    console.log(res)
+    return res;
+}
+
+findPrime(54)
+
+
+//sort and merge two arrays
+function mergeTwoArrays(a, b){
+    //sort arrays
+    a.sort(function(x,y){return x-y})
+    b.sort(function(x,y){return x-y})
+
+    console.log("sorted", a)
+
+    let i = 0
+    let j = 0
+    let elemA = a[i]
+    let elemB = b[j]
+    let res = []
+
+
+
+    if (a.length === 0) return b;
+    if (b.length === 0) return a;
+
+    while(elemA || elemB) {
+        if(elemA && !elemB || elemA < elemB) {
+            res.push(elemA)
+            elemA = a[i++]
+        } else {
+            res.push(elemB)
+            elemB = b[j++]
+        }
+    }
+
+    console.log(res)
+    return res
+
+}
+mergeTwoArrays([22,33,12,1,2,4,6,9,10], [1])
+
+
+
+//swap two numbers
+function swapTwoNumbers(a,b) {
+    console.log("before swap: " +"a:" + a + " b:" + b)
+    a = b - a
+    b = b - a
+    a = b + a
+    console.log("after swap: " +"a:" + a + " b:" + b)
+}
+
+swapTwoNumbers(1,22)
+
+
+//reverse a string
+function reverseString(str) {
+    let revStr = "";
+
+    for (i = str.length-1; i>=0;i--) {
+        revStr = revStr + str[i]
+    }
+
+    console.log(revStr)
+    return revStr
+}
+
+
+reverseString("some awesome bro")
+
+
+//find the max value in array
+arr.reduce((a,b)=>Math.max(a,b))
+
+
+
+//find non repeating char in string
+function nonRepeatingCharInString(str){
+    let counted = {}
+
+    for (i=0; i<str.length;i++ ) {
+        if(counted[str[i]]) {
+            counted[str[i]]++
+        } else {
+            counted[str[i]]=1
+        }
+    }
+
+    for(let n in counted) {
+        if(counted[n]===1) {
+            return n
+        }
+    }
+
+    return "not found"
+}
+
+
+nonRepeatingCharInString("some randoem str")
+
+
+//find missing number in arr
+//Solution calculate expected and actual sum of the arr
+function findMissingNum(arr) {
+    //1. sort arr
+    arr.sort(function(a,b){return a-b})
+
+    //1.what is length of numbers, like from 1 to 10;
+    let n=10
+    let expectedSum = n * (n+1)/2
+
+    let missingNum = expectedSum - arr.reduce((a,b)=>a+b)
+
+    console.log(missingNum)
+    return missingNum
+
+}
+
+
+findMissingNum([1,2,3,4,5,6,7,9,10])
+
