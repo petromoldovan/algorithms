@@ -1,3 +1,16 @@
+//CHEAT SHEET
+
+//arr sum
+arr.reduce((a,b)=>a+b)
+
+//arr sort
+arr.sort((a,b)=>a<b)
+
+//arr max number
+Math.max.apply(Math, arr)
+
+
+
 //check if prime
 function isPrime(n){
     var incrementer = 2;
