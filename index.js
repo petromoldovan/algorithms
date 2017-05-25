@@ -370,7 +370,7 @@ detectSingleDistanceLoop(sll) {
             return true
         }
     }
-    
+
     return false
 }
 
@@ -407,3 +407,76 @@ dll.push(1)
 dll.push(2)
 dll.push(3)
 dll.push(4)
+
+
+
+
+
+
+
+//Binary Tree.
+//At the top of the tree there is a root node with certain value and right and left nodes. If the newly inserted node
+//is less than the existing node value than we insert it to the left of node. If it is more than the existing node than
+//we insert it to the right.
+function Node(val) {
+  this.value = val;
+  this.left = null;
+  this.right = null;
+}
+
+function BinaryTree() {
+  this.root = null;
+}
+
+//add node to the tree. Either to left(less than node value) or right(more than node value).
+BinaryTree.prototype.push = function(val) {
+    let node = new Node(val);
+    let current = this.root;
+
+    if (!this.root) {
+        this.root = node;
+        return;
+    }
+
+    while(current) {
+        if (val < current.value) {
+            if (!current.left) {
+                current.left = node;
+                break;
+            }
+
+            current = current.left;
+        } else {
+            if (!current.right) {
+                current.right = node;
+                break;
+            }
+
+            current = current.right;
+        }
+    }
+}
+
+
+//find min value. You need to find the most left node of a tree.
+function minValue(binaryTreeRoot) {
+    if (!binaryTreeRoot) {
+        return 0;
+    }
+
+    if (binaryTreeRoot.left) {
+        minValue(binaryTreeRoot.left)
+    }
+
+    return binaryTreeRoot.left;
+}
+
+
+//In-order traversal(go through all elements of a tree)
+function inOrderTransversal(treeRoot) {
+    if (treeRoot) {
+        console.log(treeRoot.value)
+        inOrderTransversal(treeRoot.left)
+        inOrderTransversal(treeRoot.right)
+    }
+}
