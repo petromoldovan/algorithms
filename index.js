@@ -1,4 +1,40 @@
 //CHEAT SHEET
+Functional programming - is the process of building software by
+composing pure functions(inputs and outputs values. no side effects),
+avoiding shared state(some objects are shared in scope of the whole app or some component), \
+mutable data, and side-effects(when function is impure: in addition to returnng a value it does some other stuff like
+calling api or posting data to db).
+
+
+Object oriented programming - using objects to model real world things that we want to represent
+inside our programs, and/or provide a simple way to access functionality that would otherwise be hard or
+impossible to make use of.
+
+Imperative (Procedural) programming - functions are calling number of tasks(procedures) to processs input.
+These functions might call a sequence of functional functions and direct the logic of the application.
+
+
+Closure - function that has reference to a privat variable.constructor
+function Person() {
+    let name = "Jim";
+
+    this.getName = function() {
+        return name;
+    }
+}
+
+let user = new Person()
+user.getName()   <--- is closure function because it has reference and will return privat variable name from person;
+
+
+    Reactive manifesto - approach to create systems according to which systems are:
+1. Responsive - systems provide quick response times and problems are quick to detect and deal with.
+2. Resilient - in case of failure the system stays responsive. Errors must be properly contained and limited
+in scope and properly handled.
+3. Elastic - proper resource allocation to the system. Scalability
+4. Message Driven - aync messaging between components to ensure isolation(?)
+
+
 
 //arr sum
 arr.reduce((a,b)=>a+b)
